@@ -1,0 +1,8 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: solace-system
+  labels:
+    name: solace-system
+    type: system
