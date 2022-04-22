@@ -6,3 +6,4 @@ namespace: solace-system
 
 resources:
   - namespace.yaml
+  - operator.yaml
