@@ -22,9 +22,9 @@ spec:
        - containerPort: 9628
        env:
        - name: SOLACE_WEB_LISTEN_ADDRESS
-         value: ":9628"
+         value: "http://solace-prometheus-exporter.solace-system.svc.cluster.local:9628"
        - name: SOLACE_SCRAPE_URI
-         value: "http://pubsubplus-pubsubplus-discovery:8080"
+         value: "http://pubsubplus-pubsubplus-discovery.solace-system.svc.cluster.local:8080"
        - name: SOLACE_LISTEN_TLS
          value: "false"
        - name: SOLACE_USER
