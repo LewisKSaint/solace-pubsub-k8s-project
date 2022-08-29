@@ -1,14 +1,25 @@
 #!make
 
-.PHONY: install-pubsub create-deployment destroy
+.PHONY: destroy-all
 
+install-flux:
+	kubectl apply -f https://github.com/fluxcd/flux2/releases/latest/download/install.yaml
+
+install-all:
+	cd install;  kustomize build . | kubectl apply -f -
 
 install-pubsub:
-	cd ./service-broker; kustomize build .  | kubectl apply -f -
+	cd ./pubsubplus-broker; kustomize build .  | kubectl apply -f -
 
-create-deployment:
+create-app:
 
-destroy:
-	kubectl delete ns solace-system; kubectl delete ns solace-poc
+destroy-install:
+	cd install;  kustomize build . | kubectl delete -f -
 
+destroy-broker:
+	cd install;  kustomize build . | kubectl delete -f -
 
+destroy-app:
+	cd install;  kustomize build . | kubectl delete -f -
+
+destroy-all: destroy-app destroy-broker destroy-install

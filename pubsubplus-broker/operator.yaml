@@ -19,7 +19,7 @@ spec:
   chart:
     spec:
       chart: pubsubplus
-      version: "3.0.0"
+      version: "3.1.0"
       sourceRef:
         kind: HelmRepository
         name: pubsubplus
@@ -28,3 +28,9 @@ spec:
     image:
       repository: solace/solace-pubsub-standard
       tag: latest
+    solace:
+      redundancy: true
+      podModifierEnabled: true
+      size: dev
+    storage:
+      size: 10Gi

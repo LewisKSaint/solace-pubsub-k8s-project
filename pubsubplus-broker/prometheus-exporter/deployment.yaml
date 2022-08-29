@@ -1,0 +1,39 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ labels:
+   app: solace-prometheus-exporter
+ name: solace-prometheus-exporter
+spec:
+ replicas: 1
+ selector:
+   matchLabels:
+     app: solace-prometheus-exporter
+ template:
+   metadata:
+     labels:
+       app: solace-prometheus-exporter
+   spec:
+     containers:
+     - name: solace-prometheus-exporter
+       image: solacecommunity/solace-prometheus-exporter:v1.4.4
+       ports:
+       - containerPort: 9628
+       env:
+       - name: SOLACE_WEB_LISTEN_ADDRESS
+         value: ":9628"
+       - name: SOLACE_SCRAPE_URI
+         value: "http://pubsubplus-pubsubplus-discovery:8080"
+       - name: SOLACE_LISTEN_TLS
+         value: "false"
+       - name: SOLACE_USER
+         value: admin
+       - name: SOLACE_PASSWORD
+         value: 'admin'
+       - name: SOLACE_SCRAPE_TIMEOUT
+         value: "5s"
+       - name: SOLACE_SSL_VERIFY
+         value: "false"
+       - name: SOLACE_INCLUDE_RATES
+         value: "true"
